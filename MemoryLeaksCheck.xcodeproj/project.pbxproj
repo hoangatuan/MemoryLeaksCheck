@@ -1,0 +1,402 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4C28E3CE2ABEDFFB0004394E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28E3CD2ABEDFFB0004394E /* AppDelegate.swift */; };
+		4C28E3D22ABEDFFB0004394E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28E3D12ABEDFFB0004394E /* ViewController.swift */; };
+		4C28E3D52ABEDFFB0004394E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C28E3D32ABEDFFB0004394E /* Main.storyboard */; };
+		4C28E3D72ABEE0030004394E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C28E3D62ABEE0030004394E /* Assets.xcassets */; };
+		4C28E3DA2ABEE0030004394E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C28E3D82ABEE0030004394E /* LaunchScreen.storyboard */; };
+		4C28E3E32ABEE2D90004394E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4C28E3E22ABEE2D90004394E /* SnapKit */; };
+		4C28E3E62ABEE50B0004394E /* AbandonedMemoryExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28E3E52ABEE50B0004394E /* AbandonedMemoryExampleVC.swift */; };
+		4C28E3E82ABF1DED0004394E /* LeaksExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28E3E72ABF1DED0004394E /* LeaksExampleVC.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4C28E3CA2ABEDFFB0004394E /* MemoryLeaksCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoryLeaksCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C28E3CD2ABEDFFB0004394E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4C28E3D12ABEDFFB0004394E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4C28E3D42ABEDFFB0004394E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4C28E3D62ABEE0030004394E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C28E3D92ABEE0030004394E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4C28E3DB2ABEE0030004394E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C28E3E52ABEE50B0004394E /* AbandonedMemoryExampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbandonedMemoryExampleVC.swift; sourceTree = "<group>"; };
+		4C28E3E72ABF1DED0004394E /* LeaksExampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaksExampleVC.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4C28E3C72ABEDFFB0004394E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C28E3E32ABEE2D90004394E /* SnapKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C28E3C12ABEDFFB0004394E = {
+			isa = PBXGroup;
+			children = (
+				4C28E3CC2ABEDFFB0004394E /* MemoryLeaksCheck */,
+				4C28E3CB2ABEDFFB0004394E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4C28E3CB2ABEDFFB0004394E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4C28E3CA2ABEDFFB0004394E /* MemoryLeaksCheck.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4C28E3CC2ABEDFFB0004394E /* MemoryLeaksCheck */ = {
+			isa = PBXGroup;
+			children = (
+				4C28E3E42ABEE4FE0004394E /* Scenarios */,
+				4C28E3CD2ABEDFFB0004394E /* AppDelegate.swift */,
+				4C28E3D12ABEDFFB0004394E /* ViewController.swift */,
+				4C28E3D32ABEDFFB0004394E /* Main.storyboard */,
+				4C28E3D62ABEE0030004394E /* Assets.xcassets */,
+				4C28E3D82ABEE0030004394E /* LaunchScreen.storyboard */,
+				4C28E3DB2ABEE0030004394E /* Info.plist */,
+			);
+			path = MemoryLeaksCheck;
+			sourceTree = "<group>";
+		};
+		4C28E3E42ABEE4FE0004394E /* Scenarios */ = {
+			isa = PBXGroup;
+			children = (
+				4C28E3E52ABEE50B0004394E /* AbandonedMemoryExampleVC.swift */,
+				4C28E3E72ABF1DED0004394E /* LeaksExampleVC.swift */,
+			);
+			path = Scenarios;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4C28E3C92ABEDFFB0004394E /* MemoryLeaksCheck */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C28E3DE2ABEE0030004394E /* Build configuration list for PBXNativeTarget "MemoryLeaksCheck" */;
+			buildPhases = (
+				4C28E3C62ABEDFFB0004394E /* Sources */,
+				4C28E3C72ABEDFFB0004394E /* Frameworks */,
+				4C28E3C82ABEDFFB0004394E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MemoryLeaksCheck;
+			packageProductDependencies = (
+				4C28E3E22ABEE2D90004394E /* SnapKit */,
+			);
+			productName = MemoryLeaksCheck;
+			productReference = 4C28E3CA2ABEDFFB0004394E /* MemoryLeaksCheck.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4C28E3C22ABEDFFB0004394E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					4C28E3C92ABEDFFB0004394E = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = 4C28E3C52ABEDFFB0004394E /* Build configuration list for PBXProject "MemoryLeaksCheck" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4C28E3C12ABEDFFB0004394E;
+			packageReferences = (
+				4C28E3E12ABEE2D90004394E /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
+			productRefGroup = 4C28E3CB2ABEDFFB0004394E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4C28E3C92ABEDFFB0004394E /* MemoryLeaksCheck */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4C28E3C82ABEDFFB0004394E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C28E3DA2ABEE0030004394E /* LaunchScreen.storyboard in Resources */,
+				4C28E3D72ABEE0030004394E /* Assets.xcassets in Resources */,
+				4C28E3D52ABEDFFB0004394E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4C28E3C62ABEDFFB0004394E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C28E3E82ABF1DED0004394E /* LeaksExampleVC.swift in Sources */,
+				4C28E3D22ABEDFFB0004394E /* ViewController.swift in Sources */,
+				4C28E3E62ABEE50B0004394E /* AbandonedMemoryExampleVC.swift in Sources */,
+				4C28E3CE2ABEDFFB0004394E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4C28E3D32ABEDFFB0004394E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C28E3D42ABEDFFB0004394E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4C28E3D82ABEE0030004394E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C28E3D92ABEE0030004394E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4C28E3DC2ABEE0030004394E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4C28E3DD2ABEE0030004394E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4C28E3DF2ABEE0030004394E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RCQA85T6C2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MemoryLeaksCheck/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Hoang-Anh-Tuan.MemoryLeaksCheck";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4C28E3E02ABEE0030004394E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RCQA85T6C2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MemoryLeaksCheck/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Hoang-Anh-Tuan.MemoryLeaksCheck";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4C28E3C52ABEDFFB0004394E /* Build configuration list for PBXProject "MemoryLeaksCheck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C28E3DC2ABEE0030004394E /* Debug */,
+				4C28E3DD2ABEE0030004394E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C28E3DE2ABEE0030004394E /* Build configuration list for PBXNativeTarget "MemoryLeaksCheck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C28E3DF2ABEE0030004394E /* Debug */,
+				4C28E3E02ABEE0030004394E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4C28E3E12ABEE2D90004394E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4C28E3E22ABEE2D90004394E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C28E3E12ABEE2D90004394E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 4C28E3C22ABEDFFB0004394E /* Project object */;
+}
