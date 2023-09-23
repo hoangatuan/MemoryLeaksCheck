@@ -1,4 +1,6 @@
-name: Github Actions Demo
+# How to setup danger with github actions: https://www.jessesquires.com/blog/2020/04/10/running-danger-on-github-actions/
+
+name: Check leaks
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
@@ -12,11 +14,20 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-
-      - name: List files in the repository
+      - name: ruby versions
         run: |
-          ls ${{ github.workspace }}
-          
+          ruby --version
+          gem --version
+          bundler --version
+
+      - name: ruby setup
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+
+      - name: danger
+        env: DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+        run: bundle exec danger --verbose
+
       - run: echo "🍏 This job's status is ${{ job.status }}."
