@@ -2,7 +2,7 @@
 
 name: Check leaks
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on: [push, pull_request]
 jobs:
   Explore-Github-Actions:
     runs-on: macos-latest
