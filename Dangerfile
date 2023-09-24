@@ -1,1 +1,25 @@
-message("Hello, this worked")
+# Dangerfile
+
+# Function to read a message from a file
+# def read_message_from_file(file_path)
+#   if File.exist?(file_path)
+#     File.read(file_path).strip
+#   else
+#     nil
+#   end
+# end
+
+# # Define the path to the file containing the message
+# message_file = "./temporary.txt"
+
+# # Read the message from the file
+# message = read_message_from_file(message_file)
+
+# # Check if the message is not empty
+# if message && !message.empty?
+#   message("Message from file: #{message}")
+# else
+#   warn("The message file is empty.")
+# end
+
+message("Hello")

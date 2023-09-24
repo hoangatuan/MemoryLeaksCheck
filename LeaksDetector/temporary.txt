@@ -1,0 +1,21 @@
+Process 31253: 2 leaks for 96 total leaked bytes.
+STACK OF 1 INSTANCE OF 'ROOT LEAK: <HomeViewModel>':
+24  Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a48606f main + 63  AppDelegate.swift:11
+9   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a484291 @objc ViewController.tableView(_:didSelectRowAt:) + 129  <compiler-generated>:0
+8   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a484135 ViewController.tableView(_:didSelectRowAt:) + 789  ViewController.swift:67
+7   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a4813ff UIViewController.__allocating_init() + 31  <compiler-generated>:0
+6   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a482143 @nonobjc UIViewController.init() + 19  <compiler-generated>:0
+5   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a4817c8 @objc HomeViewController.init(nibName:bundle:) + 152  <compiler-generated>:0
+4   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a4815ac HomeViewController.init(nibName:bundle:) + 172  LeaksExampleVC.swift:12
+3   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a480309 HomeViewModel.__allocating_init() + 25  LeaksExampleVC.swift:0
+    1 (48 bytes) ROOT LEAK: <HomeViewModel 0x7f89e4e65c60> [48]
+STACK OF 1 INSTANCE OF 'ROOT LEAK: <HomeViewModel>':
+29  Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a48606f main + 63  AppDelegate.swift:11
+9   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a48142c @objc HomeViewController.simulateLogOutThenLogInBehaviour() + 28  <compiler-generated>:0
+8   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a4812ec HomeViewController.simulateLogOutThenLogInBehaviour() + 556  LeaksExampleVC.swift:52
+7   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a4813ff UIViewController.__allocating_init() + 31  <compiler-generated>:0
+6   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a482143 @nonobjc UIViewController.init() + 19  <compiler-generated>:0
+5   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a4817c8 @objc HomeViewController.init(nibName:bundle:) + 152  <compiler-generated>:0
+4   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a4815ac HomeViewController.init(nibName:bundle:) + 172  LeaksExampleVC.swift:12
+3   Hoang-Anh-Tuan.MemoryLeaksCheck        0x10a480309 HomeViewModel.__allocating_init() + 25  LeaksExampleVC.swift:0
+    1 (48 bytes) ROOT LEAK: <HomeViewModel 0x7f89e4f3ee10> [48]
