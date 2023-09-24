@@ -29,6 +29,7 @@ jobs:
       - name: danger
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-        run: bundle exec danger --verbose
+        # run: bundle exec danger --verbose
+        run: --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
