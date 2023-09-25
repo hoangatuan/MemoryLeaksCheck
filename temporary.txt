@@ -1,0 +1,14 @@
+leaks Report Version: 4.0
+Process 5756: 20176 nodes malloced for 4467 KB
+Process 5756: 5 leaks for 208 total leaked bytes.
+
+    5 (208 bytes) << TOTAL >>
+
+      2 (64 bytes) ROOT CYCLE: <Apartment 0x60000149fb00> [32]
+         1 (32 bytes) person --> ROOT CYCLE: <Person 0x60000149fba0> [32]
+            apartment --> CYCLE BACK TO <Apartment 0x60000149fb00> [32]
+
+      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x600001aaf390> [48]
+      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x600001ab9fb0> [48]
+      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x600001abaa30> [48]
+
