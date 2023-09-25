@@ -3,9 +3,6 @@ import Foundation
 import ArgumentParser
 import ShellOut
 
-// https://www.fivestars.blog/articles/ultimate-guide-swift-executables/
-// https://www.fivestars.blog/articles/a-look-into-argument-parser/
-
 @main
 struct LeaksDetector: ParsableCommand {
     
@@ -48,8 +45,7 @@ struct LeaksDetector: ParsableCommand {
             // Cache memgraphfile if need
             
             // Execute Danger
-            /// Split to multiple Danger instance: https://www.jessesquires.com/blog/2020/12/15/running-multiple-dangers/
-//            try shellOut(to: "bundle exec danger --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport")
+            try shellOut(to: "bundle exec danger --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport")
             
             // Clean up
             // TODO: Remove memgraph & temporary.txt
