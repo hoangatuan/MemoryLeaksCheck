@@ -2,7 +2,7 @@
 
 name: Check leaks
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on: [push, pull_request]
 jobs:
   Explore-Github-Actions:
     runs-on: macos-latest
@@ -29,6 +29,7 @@ jobs:
       - name: danger
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-        run: bundle exec danger --verbose
+        # run: bundle exec danger --verbose
+        run: bundle exec danger --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
