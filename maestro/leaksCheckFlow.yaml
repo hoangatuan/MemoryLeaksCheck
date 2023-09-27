@@ -1,0 +1,10 @@
+appId: Hoang-Anh-Tuan.MemoryLeaksCheck
+---
+- launchApp
+- tapOn: "Abandoned Memory Example"
+- tapOn: "Scenarios"
+- tapOn: "Leaks Memory Example"
+- tapOn: "Simulate Logout then Login Action"
+- tapOn: "Simulate Logout then Login Action"
+- tapOn: "Simulate Logout then Login Action"
+- tapOn: "Simulate Logout then Login Action"

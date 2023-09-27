@@ -1,7 +1,7 @@
 # How to setup danger with github actions: https://www.jessesquires.com/blog/2020/04/10/running-danger-on-github-actions/
 
 name: Check leaks
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: ${{ github.actor }} is checking for leaks 🚀
 on: [push, pull_request]
 jobs:
   Explore-Github-Actions:
@@ -13,6 +13,10 @@ jobs:
 
       - name: Check out repository code
         uses: actions/checkout@v4
+      
+      - uses: actions/setup-xcode@v2
+        with:
+          xcode-version: 14.2
 
       - name: ruby versions
         run: |
@@ -26,10 +30,16 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
 
-      - name: danger
-        env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-        # run: bundle exec danger --verbose
-        run: bundle exec danger --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport
+      - run: xcodebuild -project MemoryLeaksCheck.xcodeproj -scheme MemoryLeaksCheck -destination 'platform=iOS Simulator,name=iPhone 14 Pro'
+
+      - uses: mobile-dev-inc/action-maestro-cloud@v1.1.1
+        with:
+          api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
+          app-file: MemoryLeaksCheck.app
+
+      # - name: danger
+      #   env:
+      #     DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+      #   run: bundle exec danger --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
