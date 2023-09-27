@@ -15,7 +15,18 @@
 		4C28E3E32ABEE2D90004394E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4C28E3E22ABEE2D90004394E /* SnapKit */; };
 		4C28E3E62ABEE50B0004394E /* AbandonedMemoryExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28E3E52ABEE50B0004394E /* AbandonedMemoryExampleVC.swift */; };
 		4C28E3E82ABF1DED0004394E /* LeaksExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28E3E72ABF1DED0004394E /* LeaksExampleVC.swift */; };
+		4CBC593B2AC3299B00D83CA5 /* LeaksCheckerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBC593A2AC3299B00D83CA5 /* LeaksCheckerUITests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4CBC593E2AC3299B00D83CA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C28E3C22ABEDFFB0004394E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C28E3C92ABEDFFB0004394E;
+			remoteInfo = MemoryLeaksCheck;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4C28E3CA2ABEDFFB0004394E /* MemoryLeaksCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoryLeaksCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,6 +38,8 @@
 		4C28E3DB2ABEE0030004394E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C28E3E52ABEE50B0004394E /* AbandonedMemoryExampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbandonedMemoryExampleVC.swift; sourceTree = "<group>"; };
 		4C28E3E72ABF1DED0004394E /* LeaksExampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaksExampleVC.swift; sourceTree = "<group>"; };
+		4CBC59382AC3299B00D83CA5 /* LeaksCheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeaksCheckerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CBC593A2AC3299B00D83CA5 /* LeaksCheckerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaksCheckerUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +51,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CBC59352AC3299B00D83CA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -45,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				4C28E3CC2ABEDFFB0004394E /* MemoryLeaksCheck */,
+				4CBC59392AC3299B00D83CA5 /* LeaksCheckerUITests */,
 				4C28E3CB2ABEDFFB0004394E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				4C28E3CA2ABEDFFB0004394E /* MemoryLeaksCheck.app */,
+				4CBC59382AC3299B00D83CA5 /* LeaksCheckerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,6 +102,14 @@
 			path = Scenarios;
 			sourceTree = "<group>";
 		};
+		4CBC59392AC3299B00D83CA5 /* LeaksCheckerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4CBC593A2AC3299B00D83CA5 /* LeaksCheckerUITests.swift */,
+			);
+			path = LeaksCheckerUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,6 +133,24 @@
 			productReference = 4C28E3CA2ABEDFFB0004394E /* MemoryLeaksCheck.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4CBC59372AC3299B00D83CA5 /* LeaksCheckerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CBC59402AC3299B00D83CA5 /* Build configuration list for PBXNativeTarget "LeaksCheckerUITests" */;
+			buildPhases = (
+				4CBC59342AC3299B00D83CA5 /* Sources */,
+				4CBC59352AC3299B00D83CA5 /* Frameworks */,
+				4CBC59362AC3299B00D83CA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4CBC593F2AC3299B00D83CA5 /* PBXTargetDependency */,
+			);
+			name = LeaksCheckerUITests;
+			productName = LeaksCheckerUITests;
+			productReference = 4CBC59382AC3299B00D83CA5 /* LeaksCheckerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -114,6 +162,9 @@
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					4C28E3C92ABEDFFB0004394E = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					4CBC59372AC3299B00D83CA5 = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
@@ -135,6 +186,7 @@
 			projectRoot = "";
 			targets = (
 				4C28E3C92ABEDFFB0004394E /* MemoryLeaksCheck */,
+				4CBC59372AC3299B00D83CA5 /* LeaksCheckerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -147,6 +199,13 @@
 				4C28E3DA2ABEE0030004394E /* LaunchScreen.storyboard in Resources */,
 				4C28E3D72ABEE0030004394E /* Assets.xcassets in Resources */,
 				4C28E3D52ABEDFFB0004394E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CBC59362AC3299B00D83CA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +223,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CBC59342AC3299B00D83CA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CBC593B2AC3299B00D83CA5 /* LeaksCheckerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4CBC593F2AC3299B00D83CA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C28E3C92ABEDFFB0004394E /* MemoryLeaksCheck */;
+			targetProxy = 4CBC593E2AC3299B00D83CA5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C28E3D32ABEDFFB0004394E /* Main.storyboard */ = {
@@ -356,6 +431,40 @@
 			};
 			name = Release;
 		};
+		4CBC59412AC3299B00D83CA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RCQA85T6C2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Hoang-Anh-Tuan.LeaksCheckerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4CBC59422AC3299B00D83CA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RCQA85T6C2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Hoang-Anh-Tuan.LeaksCheckerUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -373,6 +482,15 @@
 			buildConfigurations = (
 				4C28E3DF2ABEE0030004394E /* Debug */,
 				4C28E3E02ABEE0030004394E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4CBC59402AC3299B00D83CA5 /* Build configuration list for PBXNativeTarget "LeaksCheckerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CBC59412AC3299B00D83CA5 /* Debug */,
+				4CBC59422AC3299B00D83CA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
