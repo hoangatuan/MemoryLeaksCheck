@@ -5,7 +5,7 @@ run-name: ${{ github.actor }} is checking for leaks 🚀
 on: [pull_request]
 jobs:
   Explore-Github-Actions:
-    runs-on: macos-latest
+    runs-on: self-hosted
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
