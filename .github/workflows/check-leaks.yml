@@ -24,6 +24,7 @@ jobs:
           gem --version
           bundler --version
 
+      # Should help this step to install dependencies. Since this is example project, I will skip this step.
       # - name: ruby setup
       #   uses: ruby/setup-ruby@v1
       #   with:
@@ -39,10 +40,5 @@ jobs:
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
         run: ./LeaksDetector/leaksdetector MemoryLeaksCheck
-
-      # - name: danger
-        # env:
-        #   DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-      #   run: bundle exec danger --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
