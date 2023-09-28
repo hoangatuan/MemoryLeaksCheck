@@ -24,11 +24,11 @@ jobs:
           gem --version
           bundler --version
 
-      - name: ruby setup
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-          bundler-cache: true
+      # - name: ruby setup
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 2.7
+      #     bundler-cache: true
 
       - run: xcodebuild -project MemoryLeaksCheck.xcodeproj -scheme MemoryLeaksCheck -destination 'platform=iOS Simulator,name=iPhone 14 Pro' CONFIGURATION_BUILD_DIR=$PWD/build
 
