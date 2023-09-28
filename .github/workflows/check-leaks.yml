@@ -35,11 +35,14 @@ jobs:
       - name: Run UI tests
         run: maestro test ./maestro/leaksCheckFlow.yaml
 
-      - run: leaks MemoryLeaksCheck --outputGraph=~/Desktop/Leaks.memgraph
+      - name: Check for leaks
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+        run: ./LeaksDetector/leaksdetector MemoryLeaksCheck
 
       # - name: danger
-      #   env:
-      #     DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+        # env:
+        #   DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
       #   run: bundle exec danger --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
