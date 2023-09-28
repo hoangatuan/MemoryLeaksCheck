@@ -32,10 +32,8 @@ jobs:
 
       - run: xcodebuild -project MemoryLeaksCheck.xcodeproj -scheme MemoryLeaksCheck -destination 'platform=iOS Simulator,name=iPhone 14 Pro' CONFIGURATION_BUILD_DIR=$PWD/build
 
-      - uses: mobile-dev-inc/action-maestro-cloud@v1.1.1
-        with:
-          api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
-          app-file: build/MemoryLeaksCheck.app
+      - name: Run UI tests
+        run: maestro test ./maestro/leaksCheckFlow.yaml
 
       - run: leaks MemoryLeaksCheck --outputGraph=~/Desktop/Leaks.memgraph
 
