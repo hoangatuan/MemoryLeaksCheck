@@ -5,17 +5,17 @@ def read_message_from_file(file_path)
     else
       nil
     end
-  end
+end
   
-  # Define the path to the file containing the message
-  message_file = "./temporary.txt"
+# Define the path to the file containing the message
+message_file = "./temporary.txt"
   
-  # Read the message from the file
-  message = read_message_from_file(message_file)
+# Read the message from the file
+message = read_message_from_file(message_file)
   
-  # Check if the message is not empty
-  if message && !message.empty?
-    message("Discovery leaks:\n #{message}")
-  else
-    warn("The message file is empty.")
-  end
+# Check if the message is not empty
+if message && !message.empty?
+  message("Discovery leaks:\n #{message}")
+else
+  warn("The message file is empty.")
+end
