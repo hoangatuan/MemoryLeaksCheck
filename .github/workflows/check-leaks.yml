@@ -39,6 +39,6 @@ jobs:
       - name: Check for leaks
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-        run: ./LeaksDetector/leaksdetector MemoryLeaksCheck
+        run: ./LeaksDetector/leaksdetector MemoryLeaksCheck ./maestro/leaksCheckFlow.yaml
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
