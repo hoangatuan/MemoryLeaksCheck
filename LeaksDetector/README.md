@@ -4,7 +4,7 @@ A executable program to checks for leaks in a running program
 
 ## How it works?
 
-1. It run maestro to capture memory graph
+1. It run `maestro` to capture memory graph. Find out about Maestro here: https://maestro.mobile.dev/
 2. It use `leaks` tool by Apple to generate a `memgraph` file, which contains all the leaks info if any.
 3. Check for leaks
 4. If there are any leaks, use `Danger` to post a message & mark a PR as failed.
@@ -14,8 +14,25 @@ A executable program to checks for leaks in a running program
 Just need to run the script:
 
 ```bash
-    leaksdetector $PROGRAM_NAME
+    $ leaksdetector $PROGRAM_NAME $MAESTRO_PATH_FILE
 ```
+
+## How to release new executable file?
+
+```bash
+    $ swift build -c release
+    $ cd .build/release
+    $ cp -f leaksdetector $LeaksDetectorPath
+```
+
+## Todo
+
+1. Change color for output message
+2. Create protocol `UIExecutor` to support multiple kind of ui testing tools: Maestro, Appium, ...
+
+## Why Maestro?
+
+- TBA
 
 ### References:
 

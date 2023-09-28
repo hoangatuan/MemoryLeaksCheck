@@ -8,6 +8,9 @@ struct LeaksDetector: ParsableCommand {
     
     @Argument(help: "The name of the running process")
     private var processName: String
+    
+    @Argument(help: "The path to the maestro ui testing yaml file")
+    private var uiFlowFilePath: String
 
     @Flag(name: .long, help: "Show extra logging for debugging purposes")
     private var verbose: Bool = false
@@ -18,12 +21,25 @@ struct LeaksDetector: ParsableCommand {
     func run() throws {
         debugPrint("Start looking for process with name: \(processName)... 🔎")
         
+        if !runningMaestro() { return }
         if !generateMemgraph(for: processName) { return }
         
         do {
             try checkLeaks()
         } catch {
             debugPrint("Error occurs while checking for leaks ❌")
+        }
+    }
+    
+    private func runningMaestro() -> Bool {
+        debugPrint("Start running ui flow... 🎥")
+        do {
+            try shellOut(to: "maestro test \(uiFlowFilePath)")
+            return true
+        } catch {
+            let error = error as! ShellOutError
+            debugPrint("❌ Something went wrong when trying to capture ui flow. \(error.message)")
+            return false
         }
     }
     
