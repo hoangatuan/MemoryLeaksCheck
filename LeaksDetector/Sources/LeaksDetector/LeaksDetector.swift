@@ -12,43 +12,67 @@ struct LeaksDetector: ParsableCommand {
     @Flag(name: .long, help: "Show extra logging for debugging purposes")
     private var verbose: Bool = false
     
-    private var memgraphFileName = "Leaks.memgraph"
+    private var memgraphPath = "~/Desktop/Leaks.memgraph"
     private var regex: String = ".*(\\d+) leaks for (\\d+) total leaked bytes.*"
     
     func run() throws {
+        debugPrint("Start looking for process with name: \(processName)... 🔎")
+        
+        if !generateMemgraph(for: processName) { return }
+        
         do {
-            debugPrint("Process name: \(processName)")
-            
-            try shellOut(to: "leaks \(processName) --outputGraph=~/Desktop/\(memgraphFileName)")
+            try checkLeaks()
+        } catch {
+            debugPrint("Error occurs while checking for leaks ❌")
+        }
+    }
+    
+    private func generateMemgraph(for processName: String) -> Bool {
+        do {
+            try shellOut(to: "leaks \(processName) --outputGraph=\(memgraphPath)")
             debugPrint("Generate memgraph successfully for process 🚀")
-            
-            try shellOut(to: "leaks", arguments: ["~/Desktop/\(memgraphFileName) -q"])
+            return true
+        } catch {
+            debugPrint("❌ Can not find any process with name: \(processName)")
+            return false
+        }
+    }
+    
+    private func checkLeaks() throws {
+        do {
+            debugPrint("Start checking for leaks... ⚙️")
+            try shellOut(to: "leaks", arguments: ["\(memgraphPath) -q"])
         } catch {
             let error = error as! ShellOutError
             if error.output.isEmpty { return }
-
+            
             let inputs = error.output.components(separatedBy: "\n")
             guard let numberOfLeaksMessage = inputs.first(where: { $0.matches(regex) }) else { return }
             let numberOfLeaks = getNumberOfLeaks(from: numberOfLeaksMessage)
-            
-            if numberOfLeaks < 1 { return }
-            
+
+            if numberOfLeaks < 1 {
+                debugPrint("Scan successfully. Don't find any leaks in the program! ✅")
+                return
+            }
+
             // Create a file to store the message, so that later Danger can read from that file
             // TODO: Convert to 1 message instead of using array-for loop to optimize execution time
-            
             let fileName = "temporary.txt"
             for message in inputs {
                 let updatedMessage = "\"\(message)\""
                 try shellOut(to: "echo \(updatedMessage) >> \(fileName)")
             }
-            
+
             // Cache memgraphfile if need
-            
-            // Execute Danger
+
+            debugPrint("Generating reports... ⚙️")
             try shellOut(to: "bundle exec danger --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport")
             
-            // Clean up
-            // TODO: Remove memgraph & temporary.txt
+            debugPrint("Cleaning... 🧹")
+            _ = try? shellOut(to: "rm \(memgraphPath)")
+            _ = try? shellOut(to: "rm \(fileName)")
+            
+            debugPrint("Done ✅")
         }
     }
     

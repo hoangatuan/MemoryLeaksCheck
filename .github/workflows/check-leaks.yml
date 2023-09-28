@@ -1,11 +1,11 @@
 # How to setup danger with github actions: https://www.jessesquires.com/blog/2020/04/10/running-danger-on-github-actions/
 
 name: Check leaks
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push, pull_request]
+run-name: ${{ github.actor }} is checking for leaks 🚀
+on: [pull_request]
 jobs:
   Explore-Github-Actions:
-    runs-on: macos-latest
+    runs-on: self-hosted
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -13,6 +13,10 @@ jobs:
 
       - name: Check out repository code
         uses: actions/checkout@v4
+      
+      - uses: maxim-lobanov/setup-xcode@v1.6.0
+        with:
+          xcode-version: 14.2.0
 
       - name: ruby versions
         run: |
@@ -20,16 +24,21 @@ jobs:
           gem --version
           bundler --version
 
-      - name: ruby setup
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-          bundler-cache: true
+      # Should help this step to install dependencies. Since this is example project, I will skip this step.
+      # - name: ruby setup
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 2.7
+      #     bundler-cache: true
 
-      - name: danger
+      - run: xcodebuild -project MemoryLeaksCheck.xcodeproj -scheme MemoryLeaksCheck -destination 'platform=iOS Simulator,name=iPhone 14 Pro' CONFIGURATION_BUILD_DIR=$PWD/build
+
+      - name: Run UI tests
+        run: maestro test ./maestro/leaksCheckFlow.yaml
+
+      - name: Check for leaks
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-        # run: bundle exec danger --verbose
-        run: bundle exec danger --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport
+        run: ./LeaksDetector/leaksdetector MemoryLeaksCheck
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
