@@ -16,8 +16,13 @@ Learn more about `Maestro` [here](https://maestro.mobile.dev/)
 3. In your ci workflow, just call:
 
 ```bash
-    leaksdetector $YOUR_APP_NAME $PATH_TO_MAESTRO_FILE
+    leaksdetector -processName $YOUR_APP_NAME -e $SUPPORTED_TESTING_FRAMEWORKS -d $PATH_TO_DANGER_FILE
 ```
+
+## Current support testing frameworks
+
+- [Maestro](https://maestro.mobile.dev/)
+- [XCUITest](https://developer.apple.com/documentation/xctest)
 
 ## How it works
 
@@ -30,7 +35,13 @@ Find more about `leaks` tool and `memgraph` [here](https://developer.apple.com/v
 
 ## Why I used Maestro?
    
-I need to testing tool which doesn't kill the program after the testing finished execution. And Maestro support that. Also Maestro is very to integrated & used.  
+1. I need to testing tool which doesn't kill the program after the testing finished execution. And Maestro support that. Also Maestro is very to integrated & used.  
+2. I've tried to used XCUItest, which is really promissing. Based on this [WWDC video](https://developer.apple.com/videos/play/wwdc2021/10180/) from Apple, XCUITest even allows us to capture the stacktrace & generate a memgraph. However, I've tried to follow the video but Xcode didn't generate any memgraph. 
+ => I'm working on this.
+
+
+## How to support your testing frameworks
+
 If you're using another UI testing framework which also support preserve the execution of the program after finish testing, you can create another PR to update the `leaksdetector`.   
 It's easy to do that, just need to follow these steps:   
 
