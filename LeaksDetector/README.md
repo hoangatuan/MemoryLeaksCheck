@@ -49,5 +49,6 @@ Just need to run the script:
 - https://www.fivestars.blog/articles/a-look-into-argument-parser/
 - https://www.swiftbysundell.com/articles/building-a-command-line-tool-using-the-swift-package-manager/
 - https://www.avanderlee.com/swift/command-line-tool-package-manager/
+- Enum arguments: https://swiftinit.org/docs/swift-argument-parser/argumentparser/customizingcompletions
 - Split to multiple Danger instance: https://www.jessesquires.com/blog/2020/12/15/running-multiple-dangers/
 - Passing params to Danger: https://github.com/danger/swift/issues/213
