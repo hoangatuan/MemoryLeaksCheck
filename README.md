@@ -35,7 +35,7 @@ Find more about `leaks` tool and `memgraph` [here](https://developer.apple.com/v
 
 ## Why I used Maestro?
    
-1. I need to testing tool which doesn't kill the program after the testing finished execution. And Maestro support that. Also Maestro is very to integrated & used.  
+1. I need a testing tool which doesn't kill the program after the testing finished execution. And Maestro support that. Also Maestro is very to integrated & used.  
 2. I've tried to used XCUItest, which is really promissing. Based on this [WWDC video](https://developer.apple.com/videos/play/wwdc2021/10180/) from Apple, XCUITest even allows us to capture the stacktrace & generate a memgraph. However, I've tried to follow the video but Xcode didn't generate any memgraph. 
  => I'm working on this.
 
