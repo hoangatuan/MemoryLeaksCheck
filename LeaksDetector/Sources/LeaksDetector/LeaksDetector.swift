@@ -2,24 +2,37 @@
 import Foundation
 import ArgumentParser
 import ShellOut
+import TSCBasic
+import TSCUtility
 
 @main
 struct LeaksDetector: ParsableCommand {
     
+    static let configuration = CommandConfiguration(
+        abstract: "This program wraps up the logic integrate leaks checking with your CI workflow"
+    )
+    
+#if DEBUG
+    private var processName = "MemoryLeaksCheck"
+    private var uiFlowFilePath = "/Users/hoanganhtuan/Desktop/MemoryLeaksCheck/maestro/leaksCheckFlow.yaml"
+#else
     @Argument(help: "The name of the running process")
     private var processName: String
     
     @Argument(help: "The path to the maestro ui testing yaml file")
     private var uiFlowFilePath: String
-
-    @Flag(name: .long, help: "Show extra logging for debugging purposes")
-    private var verbose: Bool = false
+    
+    
+#endif
+    
+//    @Flag(name: .long, help: "Show extra logging for debugging purposes")
+//    private var verbose: Bool = false
     
     private var memgraphPath = "~/Desktop/Leaks.memgraph"
     private var regex: String = ".*(\\d+) leaks for (\\d+) total leaked bytes.*"
     
     func run() throws {
-        debugPrint("Start looking for process with name: \(processName)... 🔎")
+        log(message: "Start looking for process with name: \(processName)... 🔎")
         
         if !runningMaestro() { return }
         if !generateMemgraph(for: processName) { return }
@@ -27,18 +40,18 @@ struct LeaksDetector: ParsableCommand {
         do {
             try checkLeaks()
         } catch {
-            debugPrint("Error occurs while checking for leaks ❌")
+            log(message: "❌ Error occurs while checking for leaks", color: .red)
         }
     }
     
     private func runningMaestro() -> Bool {
-        debugPrint("Start running ui flow... 🎥")
+        log(message: "Start running ui flow... 🎥")
         do {
             try shellOut(to: "maestro test \(uiFlowFilePath)")
             return true
         } catch {
             let error = error as! ShellOutError
-            debugPrint("❌ Something went wrong when trying to capture ui flow. \(error.message)")
+            log(message: "❌ Something went wrong when trying to capture ui flow. \(error.message)", color: .red)
             return false
         }
     }
@@ -46,17 +59,17 @@ struct LeaksDetector: ParsableCommand {
     private func generateMemgraph(for processName: String) -> Bool {
         do {
             try shellOut(to: "leaks \(processName) --outputGraph=\(memgraphPath)")
-            debugPrint("Generate memgraph successfully for process 🚀")
+            log(message: "Generate memgraph successfully for process 🚀", color: .green)
             return true
         } catch {
-            debugPrint("❌ Can not find any process with name: \(processName)")
+            log(message: "❌ Can not find any process with name: \(processName)", color: .red)
             return false
         }
     }
     
     private func checkLeaks() throws {
         do {
-            debugPrint("Start checking for leaks... ⚙️")
+            log(message: "Start checking for leaks... ⚙️")
             try shellOut(to: "leaks", arguments: ["\(memgraphPath) -q"])
         } catch {
             let error = error as! ShellOutError
@@ -67,7 +80,7 @@ struct LeaksDetector: ParsableCommand {
             let numberOfLeaks = getNumberOfLeaks(from: numberOfLeaksMessage)
 
             if numberOfLeaks < 1 {
-                debugPrint("Scan successfully. Don't find any leaks in the program! ✅")
+                log(message: "Scan successfully. Don't find any leaks in the program! ✅", color: .green)
                 return
             }
 
@@ -81,14 +94,14 @@ struct LeaksDetector: ParsableCommand {
 
             // Cache memgraphfile if need
 
-            debugPrint("Generating reports... ⚙️")
+            log(message: "Founded leaks. Generating reports... ⚙️")
             try shellOut(to: "bundle exec danger --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport")
             
-            debugPrint("Cleaning... 🧹")
+            log(message: "Cleaning... 🧹")
             _ = try? shellOut(to: "rm \(memgraphPath)")
             _ = try? shellOut(to: "rm \(fileName)")
             
-            debugPrint("Done ✅")
+            log(message: "Done ✅", color: .green)
         }
     }
     
