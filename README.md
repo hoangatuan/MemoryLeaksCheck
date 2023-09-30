@@ -38,4 +38,4 @@ TBC (Not for now, I will need to refactor to support that first)
 
 ## Result
 
-![Result on PR](./resources/result "")
+<img src=resources/result.png width=800/>
