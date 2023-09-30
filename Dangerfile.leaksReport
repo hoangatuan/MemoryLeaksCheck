@@ -15,7 +15,7 @@ message = read_message_from_file(message_file)
   
 # Check if the message is not empty
 if message && !message.empty?
-  fail("Discovery leaks:\n #{message}")
+  fail("Leaks detected:\n #{message}")
 else
   nil
 end

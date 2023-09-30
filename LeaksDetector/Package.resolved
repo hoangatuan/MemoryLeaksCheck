@@ -17,6 +17,24 @@
         "revision" : "8f4d2753f0e4778c76d5f05ad16c74f707390531",
         "version" : "1.2.3"
       }
+    },
+    {
+      "identity" : "swift-system",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-system.git",
+      "state" : {
+        "revision" : "025bcb1165deab2e20d4eaba79967ce73013f496",
+        "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "swift-tools-support-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-tools-support-core.git",
+      "state" : {
+        "revision" : "3b13e439a341bbbfe0f710c7d1be37221745ef1a",
+        "version" : "0.6.1"
+      }
     }
   ],
   "version" : 2

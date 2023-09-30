@@ -17,6 +17,15 @@ Just need to run the script:
     $ leaksdetector $PROGRAM_NAME $MAESTRO_PATH_FILE
 ```
 
+## How to run local
+
+1. Open `LeaksDetector.swift`, change `processName` and `uiFlowFilePath` to a hardcoded value
+2. Run:
+
+```bash
+   $ swift run
+```
+
 ## How to release new executable file?
 
 ```bash
@@ -27,8 +36,8 @@ Just need to run the script:
 
 ## Todo
 
-1. Change color for output message
-2. Create protocol `UIExecutor` to support multiple kind of ui testing tools: Maestro, Appium, ...
+1. Investigate how to integrate with XCUITest
+2. Create protocol `UIExecutor` to support multiple kind of ui testing tools: Maestro, Appium, XCUITest ...
 
 ## Why Maestro?
 
@@ -39,5 +48,6 @@ Just need to run the script:
 - https://www.fivestars.blog/articles/ultimate-guide-swift-executables/
 - https://www.fivestars.blog/articles/a-look-into-argument-parser/
 - https://www.swiftbysundell.com/articles/building-a-command-line-tool-using-the-swift-package-manager/
+- https://www.avanderlee.com/swift/command-line-tool-package-manager/
 - Split to multiple Danger instance: https://www.jessesquires.com/blog/2020/12/15/running-multiple-dangers/
 - Passing params to Danger: https://github.com/danger/swift/issues/213
