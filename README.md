@@ -34,7 +34,30 @@ I need to testing tool which doesn't kill the program after the testing finished
 If you're using another UI testing framework which also support preserve the execution of the program after finish testing, you can create another PR to update the `leaksdetector`.   
 It's easy to do that, just need to follow these steps:   
 
-TBC (Not for now, I will need to refactor to support that first)
+1. Open `Executor.swift`, create a new instance of your testing frameworks. Your new instance needs to conform to `Executor` protocol. 
+  
+```swift
+
+    struct XCUITestExecutor: Executor {
+        
+        func simulateUI() throws {
+            // Custom logic to start simulating UI
+        }
+        
+        func generateMemgraph(for processName: String) throws {
+            // Custom logic to start generating memgraph for a `processName`
+        }
+        
+        func getMemgraphPath() -> String {
+            // return the path to the generated memgraph
+        }
+    }
+    
+```
+
+2. Open `ExecutorFactory.swift`, define your new UI testing frameworks to the `ExecutorType`, and add logic to generate it in the `createExecutor` func.
+
+3. Add new `@Option` to the executable program if need
 
 ## Result
 

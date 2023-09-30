@@ -2,8 +2,7 @@
 import Foundation
 import ArgumentParser
 import ShellOut
-import TSCBasic
-import TSCUtility
+import Darwin
 
 @main
 struct LeaksDetector: ParsableCommand {
@@ -14,40 +13,59 @@ struct LeaksDetector: ParsableCommand {
     
 #if DEBUG
     private var processName = "MemoryLeaksCheck"
-    private var uiFlowFilePath = "/Users/hoanganhtuan/Desktop/MemoryLeaksCheck/maestro/leaksCheckFlow.yaml"
+    private var executorType: ExecutorType = .maestro
+    private var maestroFlowPath: String? = "/Users/hoanganhtuan/Desktop/MemoryLeaksCheck/maestro/leaksCheckFlow.yaml"
+    private var dangerPath: String = "Dangerfile.leaksReport"
 #else
-    @Argument(help: "The name of the running process")
+    
+    @Option(name: .long, help: "The name of the running process")
     private var processName: String
-    
-    @Argument(help: "The path to the maestro ui testing yaml file")
-    private var uiFlowFilePath: String
-    
-    
+
+    @Option(name: .shortAndLong, help: "The testing tools you want to use. \(ExecutorType.supportedTypesDescription)")
+    private var executorType: ExecutorType
+
+    @Option(name: .long, help: "The path to the maestro ui testing yaml file")
+    private var maestroFlowPath: String?
+
+    @Option(name: .shortAndLong, help: "The path to the Dangerfile")
+    private var dangerPath: String
 #endif
     
-//    @Flag(name: .long, help: "Show extra logging for debugging purposes")
-//    private var verbose: Bool = false
-    
-    private var memgraphPath = "~/Desktop/Leaks.memgraph"
     private var regex: String = ".*(\\d+) leaks for (\\d+) total leaked bytes.*"
     
-    func run() throws {
+    mutating func run() throws {
+        guard let executor = ExecutorFactory.createExecutor(for: executorType, parameters: prepareParams()) else {
+            Darwin.exit(EXIT_FAILURE)
+        }
+        
         log(message: "Start looking for process with name: \(processName)... 🔎")
         
-        if !runningMaestro() { return }
-        if !generateMemgraph(for: processName) { return }
+        if !simulateUIFlow(by: executor) {
+            Darwin.exit(EXIT_FAILURE)
+        }
+        
+        if !generateMemgraph(by: executor) {
+            Darwin.exit(EXIT_FAILURE)
+        }
         
         do {
-            try checkLeaks()
+            try checkLeaks(by: executor)
         } catch {
             log(message: "❌ Error occurs while checking for leaks", color: .red)
+            Darwin.exit(EXIT_FAILURE)
         }
     }
     
-    private func runningMaestro() -> Bool {
+    private func prepareParams() -> ExecutorParameters {
+        var params: [String: String] = [:]
+        params[ParameterKeys.maestroFilePath] = maestroFlowPath
+        return params
+    }
+    
+    private func simulateUIFlow(by executor: Executor) -> Bool {
         log(message: "Start running ui flow... 🎥")
         do {
-            try shellOut(to: "maestro test \(uiFlowFilePath)")
+            try executor.simulateUI()
             return true
         } catch {
             let error = error as! ShellOutError
@@ -56,9 +74,9 @@ struct LeaksDetector: ParsableCommand {
         }
     }
     
-    private func generateMemgraph(for processName: String) -> Bool {
+    private func generateMemgraph(by executor: Executor) -> Bool {
         do {
-            try shellOut(to: "leaks \(processName) --outputGraph=\(memgraphPath)")
+            try executor.generateMemgraph(for: processName)
             log(message: "Generate memgraph successfully for process 🚀", color: .green)
             return true
         } catch {
@@ -67,9 +85,10 @@ struct LeaksDetector: ParsableCommand {
         }
     }
     
-    private func checkLeaks() throws {
+    private func checkLeaks(by executor: Executor) throws {
         do {
             log(message: "Start checking for leaks... ⚙️")
+            let memgraphPath = executor.getMemgraphPath()
             try shellOut(to: "leaks", arguments: ["\(memgraphPath) -q"])
         } catch {
             let error = error as! ShellOutError
@@ -95,10 +114,10 @@ struct LeaksDetector: ParsableCommand {
             // Cache memgraphfile if need
 
             log(message: "Founded leaks. Generating reports... ⚙️")
-            try shellOut(to: "bundle exec danger --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport")
+            try shellOut(to: "bundle exec danger --dangerfile=\(dangerPath) --danger_id=LeaksReport")
             
             log(message: "Cleaning... 🧹")
-            _ = try? shellOut(to: "rm \(memgraphPath)")
+            _ = try? shellOut(to: "rm \(executor.getMemgraphPath())")
             _ = try? shellOut(to: "rm \(fileName)")
             
             log(message: "Done ✅", color: .green)
