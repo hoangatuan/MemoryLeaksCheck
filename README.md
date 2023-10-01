@@ -22,7 +22,7 @@ Learn more about `Maestro` [here](https://maestro.mobile.dev/)
 ## Current support testing frameworks
 
 - [Maestro](https://maestro.mobile.dev/)
-- [XCUITest](https://developer.apple.com/documentation/xctest)
+- [XCUITest](https://developer.apple.com/documentation/xctest) (In progress)
 
 ## How it works
 
