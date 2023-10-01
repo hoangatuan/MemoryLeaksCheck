@@ -114,7 +114,7 @@ struct LeaksDetector: ParsableCommand {
             // Cache memgraphfile if need
 
             log(message: "Founded leaks. Generating reports... ⚙️")
-            try shellOut(to: "bundle exec danger --dangerfile=\(dangerPath) --danger_id=LeaksReport")
+            try shellOut(to: "bundle exec danger --dangerfile=Dangerfile.leaksReport --danger_id=LeaksReport")
             
             log(message: "Cleaning... 🧹")
             _ = try? shellOut(to: "rm \(executor.getMemgraphPath())")
