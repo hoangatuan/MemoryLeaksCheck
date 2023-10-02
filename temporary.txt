@@ -1,59 +1,13 @@
 leaks Report Version: 4.0
-Process 2777: 41912 nodes malloced for 6671 KB
-Process 2777: 6 leaks for 256 total leaked bytes.
+Process 3651: 42333 nodes malloced for 6720 KB
+Process 3651: 4 leaks for 160 total leaked bytes.
 
-    6 (256 bytes) << TOTAL >>
+    4 (160 bytes) << TOTAL >>
 
-      2 (64 bytes) ROOT CYCLE: <Person 0x6000005784a0> [32]
-         1 (32 bytes) apartment --> ROOT CYCLE: <Apartment 0x600000579500> [32]
-            person --> CYCLE BACK TO <Person 0x6000005784a0> [32]
+      2 (64 bytes) ROOT CYCLE: <Apartment 0x600003afd580> [32]
+         1 (32 bytes) person --> ROOT CYCLE: <Person 0x600003afd5e0> [32]
+            apartment --> CYCLE BACK TO <Apartment 0x600003afd580> [32]
 
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x600000b24d80> [48]
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x600000b2b6f0> [48]
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x600000b33f90> [48]
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x600000b4b300> [48]
-
-leaks Report Version: 4.0
-Process 3222: 41936 nodes malloced for 6693 KB
-Process 3222: 5 leaks for 208 total leaked bytes.
-
-    5 (208 bytes) << TOTAL >>
-
-      2 (64 bytes) ROOT CYCLE: <Apartment 0x6000018aa9e0> [32]
-         1 (32 bytes) person --> ROOT CYCLE: <Person 0x6000018aaa60> [32]
-            apartment --> CYCLE BACK TO <Apartment 0x6000018aa9e0> [32]
-
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x6000016eec70> [48]
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x6000016f28b0> [48]
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x6000016f2c10> [48]
-
-leaks Report Version: 4.0
-Process 3891: 42565 nodes malloced for 6720 KB
-Process 3891: 6 leaks for 256 total leaked bytes.
-
-    6 (256 bytes) << TOTAL >>
-
-      2 (64 bytes) ROOT CYCLE: <Apartment 0x60000384f820> [32]
-         1 (32 bytes) person --> ROOT CYCLE: <Person 0x60000384f880> [32]
-            apartment --> CYCLE BACK TO <Apartment 0x60000384f820> [32]
-
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x600003613450> [48]
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x600003613510> [48]
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x60000365a970> [48]
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x60000365bbd0> [48]
-
-leaks Report Version: 4.0
-Process 4472: 41929 nodes malloced for 6675 KB
-Process 4472: 6 leaks for 256 total leaked bytes.
-
-    6 (256 bytes) << TOTAL >>
-
-      2 (64 bytes) ROOT CYCLE: <Person 0x6000018bc040> [32]
-         1 (32 bytes) apartment --> ROOT CYCLE: <Apartment 0x6000018bc6a0> [32]
-            person --> CYCLE BACK TO <Person 0x6000018bc040> [32]
-
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x600001624540> [48]
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x600001625aa0> [48]
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x600001674fc0> [48]
-      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x6000016767c0> [48]
+      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x6000034bcd20> [48]
+      1 (48 bytes) ROOT LEAK: <HomeViewModel 0x6000034bd320> [48]
 

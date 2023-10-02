@@ -31,11 +31,11 @@ jobs:
       #     ruby-version: 2.7
       #     bundler-cache: true
 
-      - run: xcodebuild -project MemoryLeaksCheck.xcodeproj -scheme MemoryLeaksCheck -destination 'platform=iOS Simulator,name=iPhone 14 Pro' CONFIGURATION_BUILD_DIR=$PWD/build
+      # - run: xcodebuild -project MemoryLeaksCheck.xcodeproj -scheme MemoryLeaksCheck -destination 'platform=iOS Simulator,name=iPhone 14 Pro' CONFIGURATION_BUILD_DIR=$PWD/build
 
       - name: Check for leaks
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
-        run: ./LeaksDetector/leaksdetector --process-name MemoryLeaksCheck -e maestro --maestro-flow-path ./maestro/leaksCheckFlow.yaml -d ./Dangerfile.leaksReport
+        run: ./LeaksDetector/leaksdetector --process-name MemoryLeaksCheck --executor-type maestro --maestro-flow-path ./maestro/leaksCheckFlow.yaml -d ./Dangerfile.leaksReport
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
