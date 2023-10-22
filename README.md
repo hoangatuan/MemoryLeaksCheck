@@ -3,6 +3,10 @@
 
 This is a simple package that enables you to easily integrate the Memory leaks check to your CI workflow.
 
+# Getting started
+
+![Static Badge](https://img.shields.io/badge/status-active-brightgreen)
+
 ## Usage
 
 Just need to follow these simple steps:
@@ -21,8 +25,8 @@ Learn more about `Maestro` [here](https://maestro.mobile.dev/)
 
 ## Current support testing frameworks
 
-- [Maestro](https://maestro.mobile.dev/)
-- [XCUITest](https://developer.apple.com/documentation/xctest) (In progress)
+- [Maestro](https://maestro.mobile.dev/) ✅
+- [XCUITest](https://developer.apple.com/documentation/xctest) (In progress ⚙️)
 
 ## How it works
 
@@ -36,9 +40,11 @@ Find more about `leaks` tool and `memgraph` [here](https://developer.apple.com/v
 ## Why I used Maestro?
    
 1. I need a testing tool which doesn't kill the program after the testing finished execution. And Maestro support that. Also Maestro is very easy to integrate & use.  
-2. I've tried to used XCUItest, which is really promissing. Based on this [WWDC video](https://developer.apple.com/videos/play/wwdc2021/10180/) from Apple, XCUITest even *allows us to capture the stacktrace where leaks occur & generate a memgraph*. However, I've tried to follow the video but Xcode didn't generate any memgraph. 
- => I'm working on this.
+2. I've tried to used XCUItest, which is really promissing. Based on this [WWDC video](https://developer.apple.com/videos/play/wwdc2021/10180/) from Apple, XCUITest even *allows us to capture the stacktrace where leaks occur & generate a memgraph*. However, I've tried to follow the video but Xcode didn't generate any memgraph.   
 
+    => I'm working on this.   
+    
+    I've posted some questions on [swiftforum](https://forums.swift.org/t/xctest-doesnt-generate-memgraph-file-after-ui-test-finish-execution/67982) and [developer.apple](https://developer.apple.com/forums/thread/738659). If you have any ideas, feel free to reply on the threads
 
 ## How to support your testing frameworks
 
@@ -73,3 +79,7 @@ It's easy to do that, just need to follow these steps:
 ## Result
 
 <img src=resources/result.png width=800/>
+
+## Publication
+
+I've published an article about this on Medium. You can take a look at [here](https://medium.com/gitconnected/automating-memory-leak-detection-with-ci-integration-for-ios-380f08a55f0b)
