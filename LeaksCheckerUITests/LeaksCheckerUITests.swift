@@ -17,7 +17,9 @@ final class LeaksCheckerUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() throws {
+    /// This is a solution to generate memgraph using breakpoint.
+    /// => this solution only work when you running test using Xcode.
+    func testExample_usingBreakpointToGenrateMemgraph() throws {
         
         // UI tests must launch the application that they test.
         app = XCUIApplication(bundleIdentifier: "Hoang-Anh-Tuan.MemoryLeaksCheck")
@@ -41,5 +43,31 @@ final class LeaksCheckerUITests: XCTestCase {
         /// - Parameters: The parameters is passed in the shell script is the program name, which is our app name. For this project, the app name is *MemoryLeaksCheck*.
         debugPrint("Start checking for leaks... 🔎")
     }
+    
+    /// This test will generate memgraph via command line. However, it only works on physical device, not simulator.
+    /// For more info, please read README.
+    func testExample() throws {
+        let app = XCUIApplication()
+        let options = XCTMeasureOptions()
+        
+        measure(
+            metrics: [XCTMemoryMetric(application: app)],
+            options: options
+        ) {
+            app.launch()
+            startMeasuring()
+            
+            app.staticTexts["Abandoned Memory Example"].tap()
+            app.buttons["Scenarios"].tap()
 
+            app.staticTexts["Leaks Memory Example"].tap()
+
+            let simulateLogoutThenLoginActionButton = app.buttons["Simulate Logout then Login Action"]
+            simulateLogoutThenLoginActionButton.tap()
+            simulateLogoutThenLoginActionButton.tap()
+            simulateLogoutThenLoginActionButton.tap()
+            simulateLogoutThenLoginActionButton.tap()
+        }
+    }
+    
 }
