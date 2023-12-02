@@ -40,26 +40,23 @@ struct LeaksDetector: ParsableCommand {
         
         log(message: "Start looking for process with name: \(processName)... 🔎")
         
+        /// Step 1: Using UI Testing tool to simulate the flow
         if !simulateUIFlow(by: executor) {
             Darwin.exit(EXIT_FAILURE)
         }
         
+        /// Step 2: Using *leak* tool provided by Apple to generate a memgrpah file
         if !generateMemgraph(by: executor) {
             Darwin.exit(EXIT_FAILURE)
         }
         
         do {
+            /// Step 3: Using *leak* tool provided by Apple to process generated memgraph from Step2.
             try checkLeaks(by: executor)
         } catch {
             log(message: "❌ Error occurs while checking for leaks", color: .red)
             Darwin.exit(EXIT_FAILURE)
         }
-    }
-    
-    private func prepareParams() -> ExecutorParameters {
-        var params: [String: String] = [:]
-        params[ParameterKeys.maestroFilePath] = maestroFlowPath
-        return params
     }
     
     private func simulateUIFlow(by executor: Executor) -> Bool {
@@ -89,6 +86,8 @@ struct LeaksDetector: ParsableCommand {
         do {
             log(message: "Start checking for leaks... ⚙️")
             let memgraphPath = executor.getMemgraphPath()
+            
+            /// Running this script always throw error (somehow the leak tool throw error here) => So we need to process the memgraph in the `catch` block.
             try shellOut(to: "leaks", arguments: ["\(memgraphPath) -q"])
         } catch {
             let error = error as! ShellOutError
@@ -104,24 +103,34 @@ struct LeaksDetector: ParsableCommand {
             }
 
             // Create a file to store the message, so that later Danger can read from that file
-            // TODO: Convert to 1 message instead of using array-for loop to optimize execution time
             let fileName = "temporary.txt"
             for message in inputs {
                 let updatedMessage = "\"\(message)\""
                 try shellOut(to: "echo \(updatedMessage) >> \(fileName)")
             }
-
-            // Cache memgraphfile if need
+            
+            // Send memgraph to remote storage if need
 
             log(message: "Founded leaks. Generating reports... ⚙️")
-            try shellOut(to: "bundle exec danger --dangerfile=\(dangerPath) --danger_id=LeaksReport")
             
-            log(message: "Cleaning... 🧹")
-            _ = try? shellOut(to: "rm \(executor.getMemgraphPath())")
-            _ = try? shellOut(to: "rm \(fileName)")
+            do {
+                try shellOut(to: "bundle exec danger --dangerfile=\(dangerPath) --danger_id=LeaksReport")
+                log(message: "Done ✅", color: .green)
+            } catch {
+                log(message: "❌ Can not execute Danger", color: .red)
+            }
             
-            log(message: "Done ✅", color: .green)
+            cleanup(executor: executor, fileName: fileName)
         }
+    }
+}
+
+// MARK: - Helper functions
+extension LeaksDetector {
+    private func prepareParams() -> ExecutorParameters {
+        var params: [String: String] = [:]
+        params[ParameterKeys.maestroFilePath] = maestroFlowPath
+        return params
     }
     
     private func getNumberOfLeaks(from message: String) -> Int {
@@ -138,6 +147,11 @@ struct LeaksDetector: ParsableCommand {
         return 0
     }
     
+    private func cleanup(executor: Executor, fileName: String) {
+        log(message: "Cleaning... 🧹")
+        _ = try? shellOut(to: "rm \(executor.getMemgraphPath())")
+        _ = try? shellOut(to: "rm \(fileName)")
+    }
 }
 
 extension String {
