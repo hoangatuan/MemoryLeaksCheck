@@ -1,0 +1,58 @@
+//
+//  File.swift
+//  
+//
+//  Created by Tuan Hoang on 6/1/24.
+//
+
+import Foundation
+import ShellOut
+
+struct CheckLeaks: RunCommandStep {
+    let executor: Executor
+
+    private let regex: String = ".*(\\d+) leaks for (\\d+) total leaked bytes.*"
+
+    func run() throws {
+        do {
+            log(message: "Start checking for leaks... ⚙️")
+            let memgraphPath = executor.getMemgraphPath()
+
+            /// Running this script always throw error (somehow the leak tool throw error here) => So we need to process the memgraph in the `catch` block.
+            try shellOut(to: "leaks", arguments: ["\(memgraphPath) -q"])
+        } catch {
+            let error = error as! ShellOutError
+            if error.output.isEmpty { return }
+
+            let inputs = error.output.components(separatedBy: "\n")
+            guard let numberOfLeaksMessage = inputs.first(where: { $0.matches(regex) }) else { return }
+            let numberOfLeaks = getNumberOfLeaks(from: numberOfLeaksMessage)
+
+            if numberOfLeaks < 1 {
+                log(message: "Scan successfully. Don't find any leaks in the program! ✅", color: .green)
+                return
+            }
+
+            for message in inputs {
+                let updatedMessage = "\"\(message)\""
+                try shellOut(to: "echo \(updatedMessage) >> \(Constants.leaksReportFileName)")
+            }
+
+            log(message: "Founded leaks. Generating reports... ⚙️")
+        }
+    }
+
+    private func getNumberOfLeaks(from message: String) -> Int {
+        if let regex = try? NSRegularExpression(pattern: regex, options: []) {
+            // Find the first match in the input string
+            if let match = regex.firstMatch(in: message, options: [], range: NSRange(message.startIndex..., in: message)) {
+                // Extract the "d" value from the first capture group
+                if let dRange = Range(match.range(at: 1), in: message), let dValue = Int(message[dRange]) {
+                    return dValue
+                }
+            }
+        }
+
+        return 0
+    }
+}
