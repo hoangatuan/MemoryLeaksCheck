@@ -7,11 +7,12 @@ This is a simple package that enables you to easily integrate the Memory leaks c
 
 # Table of Contents
 
-- Installation
-- Usage
-- Current supported testing frameworks
-- How?
-- References
+- [Installation](#installation)
+- [Usage](#usage)
+- [Current supported testing frameworks](#current-supported-testing-frameworks)
+- [How?](#how)
+- [How to support your testing framework](#how-to-support-your-testing-framework)
+- [Publication](#publication)
 
 ## Installation
 
@@ -31,9 +32,9 @@ Check out [this document](./Docs/Report.md) for how to use specific subcommands
 
 ### How to report the result to your development workflow
 
-Check out [How to report leaks to your development workflow](./Docs/Report.md) for how to customize the process to send the result to your workflow
+Check out [this document](./Docs/Report.md) for how to customize the process to send the result to your workflow
 
-## Current testing frameworks
+## Current supported testing frameworks
 
 - [Maestro](https://maestro.mobile.dev/) ✅
 - [XCUITest](https://developer.apple.com/documentation/xctest) (XCUITest is not supported. Read more [here](./Docs/XCUITests.md)) ❌
@@ -52,7 +53,7 @@ Find more about `leaks` tool and `memgraph` [here](https://developer.apple.com/v
 
 3. Use `leaksdetector` program to proceed the `memgraph` file. If any leaks founded, it will use Danger to post a message to your PR/slack, ... 
 
-## How to support your testing frameworks
+## How to support your testing framework
 
 If you're using another UI testing framework which also support preserve the execution of the program after finish testing, you can create another PR to update the `leaksdetector`.   
 It's easy to do that, just need to follow these steps:   
