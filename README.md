@@ -3,44 +3,54 @@
 
 This is a simple package that enables you to easily integrate the Memory leaks check to your CI workflow.
 
-# Getting started
-
 ![Static Badge](https://img.shields.io/badge/status-active-brightgreen)
+
+# Table of Contents
+
+- Installation
+- Usage
+- Current supported testing frameworks
+- How?
+- References
+
+## Installation
+
+You can go to [GitHub Releases](https://github.com/hoangatuan/MemoryLeaksCheck/releases) page to download release executable program.
 
 ## Usage
 
-Just need to follow these simple steps:
-
-1. Copy `Dangerfile.leaksReport` to your project. This contains the logic to get the leaks message and post to your Pull request. You can custom this Dangerfile.  
-Learn more about `Danger` [here](https://danger.systems/ruby/)
-
-2. Create a maestro flow to run simulate the flow in your app.  
-Learn more about `Maestro` [here](https://maestro.mobile.dev/)
-
-3. In your ci workflow, just call:
+The most simple way to run the leaks checking process is:
 
 ```bash
-    leaksdetector $subcommand -p $YOUR_APP_NAME -d $PATH_TO_DANGER_LEAKS_REPORT_FILE
+    leaksdetector $subcommand -p $YOUR_APP_NAME
 ```
+
+### How to use subcommands
+
+Check out [this document](./Docs/Report.md) for how to use specific subcommands
+
+### How to report the result to your development workflow
+
+Check out [How to report leaks to your development workflow](./Docs/Report.md) for how to customize the process to send the result to your workflow
 
 ## Current testing frameworks
 
 - [Maestro](https://maestro.mobile.dev/) ✅
 - [XCUITest](https://developer.apple.com/documentation/xctest) (XCUITest is not supported. Read more [here](./Docs/XCUITests.md)) ❌
 
+### Why I used Maestro?
+   
+1. I need a testing tool which doesn't kill the program after the testing finished execution. And Maestro support that. Also Maestro is very easy to integrate & use.  
+2. XCUITest can not preserve running program after test execution. Read more at [here](./Docs/XCUITests.md) 
+
 ## How it works
 
-1. Use Maestro to simulate the UI flow in your app.   
+1. Use a testing tool to simulate the UI flow in your app.   
 
 2. Generate `memgraph` using `leaks` tool provided by Apple.  
 Find more about `leaks` tool and `memgraph` [here](https://developer.apple.com/videos/play/wwdc2018/416/)   
 
 3. Use `leaksdetector` program to proceed the `memgraph` file. If any leaks founded, it will use Danger to post a message to your PR/slack, ... 
-
-## Why I used Maestro?
-   
-1. I need a testing tool which doesn't kill the program after the testing finished execution. And Maestro support that. Also Maestro is very easy to integrate & use.  
-2. XCUITest can not preserve running program after test execution. Read more at [here](./Docs/XCUITests.md) 
 
 ## How to support your testing frameworks
 
@@ -68,9 +78,7 @@ It's easy to do that, just need to follow these steps:
     
 ```
 
-2. Open `ExecutorFactory.swift`, define your new UI testing frameworks to the `ExecutorType`, and add logic to generate it in the `createExecutor` func.
-
-3. Add new `@Option` to the executable program if need
+2. Go to `Commands` folder to create a new command for your testing framework. Please refer to `MaestroCommand`.
 
 ## Result
 
