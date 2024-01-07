@@ -20,7 +20,7 @@ Learn more about `Maestro` [here](https://maestro.mobile.dev/)
 3. In your ci workflow, just call:
 
 ```bash
-    leaksdetector -processName $YOUR_APP_NAME -e $SUPPORTED_TESTING_FRAMEWORKS -d $PATH_TO_DANGER_FILE
+    leaksdetector $subcommand -p $YOUR_APP_NAME -d $PATH_TO_DANGER_LEAKS_REPORT_FILE
 ```
 
 ## Current testing frameworks

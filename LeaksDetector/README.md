@@ -14,12 +14,12 @@ A executable program to checks for leaks in a running program
 Just need to run the script:
 
 ```bash
-    $ leaksdetector $PROGRAM_NAME $MAESTRO_PATH_FILE
+    $ leaksdetector maestro -p $PROGRAM_NAME -maestroFlowPath $MAESTRO_PATH_FILE -dangerFilePath $DANGER_FILE_PATH
 ```
 
 ## How to run local
 
-1. Open `LeaksDetector.swift`, change `processName`, `executorType`, `maestroFlowPath`, `dangerPath` to a hardcoded value
+1. Open `MaestroCommand.swift`, change `processName`, `maestroFlowPath`, `dangerPath` to a hardcoded value
 2. Run:
 
 ```bash
@@ -31,17 +31,8 @@ Just need to run the script:
 ```bash
     $ swift build -c release
     $ cd .build/release
-    $ cp -f leaksdetector $LeaksDetectorPath
+    $ cp -f leaksdetector ./../../../
 ```
-
-## Todo
-
-1. Investigate how to integrate with XCUITest
-2. Integrate with DocC
-
-## Why Maestro?
-
-- TBA
 
 ### References:
 
