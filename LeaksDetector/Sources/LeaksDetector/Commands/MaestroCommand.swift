@@ -9,7 +9,11 @@ import ArgumentParser
 import Foundation
 
 struct MaestroCommand: ParsableCommand {
-    
+    static let configuration = CommandConfiguration(
+        commandName: "maestro",
+        abstract: "Perform memory leaks check by using Maestro testing tool."
+    )
+
 #if DEBUG
     private var processName = "MemoryLeaksCheck"
     private var maestroFlowPath: String = "/Users/hoanganhtuan/Desktop/MemoryLeaksCheck/maestro/leaksCheckFlow.yaml"

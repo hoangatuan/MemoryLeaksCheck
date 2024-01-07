@@ -31,7 +31,7 @@ Just need to run the script:
 ```bash
     $ swift build -c release
     $ cd .build/release
-    $ cp -f leaksdetector $LeaksDetectorPath
+    $ cp -f leaksdetector ./../../../
 ```
 
 ### References:
