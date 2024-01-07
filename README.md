@@ -1,9 +1,12 @@
 
 # 🔎 CILeaksDetector 
 
-This is a simple package that enables you to easily integrate the Memory leaks check to your CI workflow.
-
 ![Static Badge](https://img.shields.io/badge/status-active-brightgreen)
+
+This is a simple tool to help you checking for leaks in your program automatically in the most accurate way, then it will send the report directly to your development workflow (Pull request/Slack/...).
+And even better, you can easily integrate this tool to your CI workflow.
+
+<img src=resources/result.png width=800/>
 
 # Table of Contents
 
@@ -80,10 +83,6 @@ It's easy to do that, just need to follow these steps:
 ```
 
 2. Go to `Commands` folder to create a new command for your testing framework. Please refer to `MaestroCommand`.
-
-## Result
-
-<img src=resources/result.png width=800/>
 
 ## Publication
 
