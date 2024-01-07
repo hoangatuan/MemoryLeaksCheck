@@ -8,6 +8,11 @@
 import Foundation
 import ShellOut
 
+enum LeaksCheckError: Error {
+    case leaksCommandFailed
+    case incorectOutputFormat
+}
+
 struct CheckLeaks: RunCommandStep {
     let executor: Executor
 
@@ -22,10 +27,17 @@ struct CheckLeaks: RunCommandStep {
             try shellOut(to: "leaks", arguments: ["\(memgraphPath) -q"])
         } catch {
             let error = error as! ShellOutError
-            if error.output.isEmpty { return }
+            if error.output.isEmpty {
+                log(message: "❌ Leaks command run failed! Please open an issue on Github for me to check!", color: .red)
+                throw LeaksCheckError.leaksCommandFailed
+            }
 
             let inputs = error.output.components(separatedBy: "\n")
-            guard let numberOfLeaksMessage = inputs.first(where: { $0.matches(regex) }) else { return }
+            guard let numberOfLeaksMessage = inputs.first(where: { $0.matches(regex) }) else {
+                log(message: "❌ Generated leaks output is incorrect! Please open an issue on Github for me to check!", color: .red)
+                throw LeaksCheckError.incorectOutputFormat
+            }
+
             let numberOfLeaks = getNumberOfLeaks(from: numberOfLeaksMessage)
 
             if numberOfLeaks < 1 {

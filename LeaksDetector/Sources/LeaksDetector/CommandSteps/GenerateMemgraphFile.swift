@@ -15,8 +15,9 @@ struct GenerateMemgraphFile: RunCommandStep {
         do {
             try executor.generateMemgraph(for: processName)
             log(message: "Generate memgraph successfully for process 🚀", color: .green)
-        } catch {
+        } catch let error {
             log(message: "❌ Can not find any process with name: \(processName)", color: .red)
+            throw error
         }
     }
 }
