@@ -3,33 +3,4 @@
    uuid = "C25411C1-8F4B-4281-9462-51E1944DE77E"
    type = "4"
    version = "2.0">
-   <Breakpoints>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "36593BB7-BE9C-457C-8CE7-A83C591BB7A4"
-            shouldBeEnabled = "No"
-            nameForDebugger = "CheckingForLeaks"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LeaksCheckerUITests/LeaksCheckerUITests.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "testExample_usingBreakpointToGenrateMemgraph()"
-            landmarkType = "7">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.ShellCommand">
-                  <ActionContent
-                     command = "/Users/hoanganhtuan/Desktop/MemoryLeaksCheck/LeaksDetector/leaksdetector"
-                     arguments = "MemoryLeaksCheck"
-                     waitUntilDone = "NO">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
-         </BreakpointContent>
-      </BreakpointProxy>
-   </Breakpoints>
 </Bucket>

@@ -21,6 +21,7 @@ struct Processor {
         self.configuration = configuration
         self.executor = executor
         var steps: [RunCommandStep] = [
+            PrepareStep(),
             SimulateUIFlow(executor: executor),
             GenerateMemgraphFile(executor: executor, processName: configuration.processName),
             CheckLeaks(executor: executor)

@@ -13,7 +13,6 @@ struct CleanUp: RunCommandStep {
 
     func run() throws {
         log(message: "Cleaning... 🧹")
-        _ = try? shellOut(to: "rm \(executor.getMemgraphPath())")
         _ = try? shellOut(to: "rm \(Constants.leaksReportFileName)")
     }
 }

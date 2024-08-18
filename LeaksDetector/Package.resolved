@@ -35,6 +35,15 @@
         "revision" : "3b13e439a341bbbfe0f710c7d1be37221745ef1a",
         "version" : "0.6.1"
       }
+    },
+    {
+      "identity" : "xcresultkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/davidahouse/XCResultKit.git",
+      "state" : {
+        "revision" : "63a93e454e30084b8948cba0ee42112fca1f6010",
+        "version" : "1.2.0"
+      }
     }
   ],
   "version" : 2

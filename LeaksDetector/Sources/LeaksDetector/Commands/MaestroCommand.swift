@@ -11,7 +11,7 @@ import Foundation
 struct MaestroCommand: ParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "maestro",
-        abstract: "Perform memory leaks check by using Maestro testing tool."
+        abstract: "Perform memory leaks check by using Maestro testing tool"
     )
 
 #if DEBUG

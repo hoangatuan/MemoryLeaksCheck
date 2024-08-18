@@ -19,39 +19,63 @@ struct CheckLeaks: RunCommandStep {
     private let regex: String = ".*(\\d+) leaks for (\\d+) total leaked bytes.*"
 
     func run() throws {
-        do {
-            log(message: "Start checking for leaks... ⚙️")
-            let memgraphPath = executor.getMemgraphPath()
-
-            /// Running this script always throw error (somehow the leak tool throw error here) => So we need to process the memgraph in the `catch` block.
-            try shellOut(to: "leaks", arguments: ["\(memgraphPath) -q"])
-        } catch {
-            let error = error as! ShellOutError
-            if error.output.isEmpty {
-                log(message: "❌ Leaks command run failed! Please open an issue on Github for me to check!", color: .red)
-                throw LeaksCheckError.leaksCommandFailed
-            }
-
-            let inputs = error.output.components(separatedBy: "\n")
-            guard let numberOfLeaksMessage = inputs.first(where: { $0.matches(regex) }) else {
-                log(message: "❌ Generated leaks output is incorrect! Please open an issue on Github for me to check!", color: .red)
-                throw LeaksCheckError.incorectOutputFormat
-            }
-
-            let numberOfLeaks = getNumberOfLeaks(from: numberOfLeaksMessage)
-
-            if numberOfLeaks < 1 {
-                log(message: "Scan successfully. Don't find any leaks in the program! ✅", color: .green)
-                return
-            }
-
-            for message in inputs {
-                let updatedMessage = "\"\(message)\""
-                try shellOut(to: "echo \(updatedMessage) >> \(Constants.leaksReportFileName)")
-            }
-
-            log(message: "Founded leaks. Generating reports... ⚙️")
+        
+        if executor.memgraphPaths().isEmpty {
+            log(message: "❌ Can not find any memgraphs!", color: .red)
+            return
         }
+        
+        for memgraphPath in executor.memgraphPaths() {
+            do {
+                log(message: "Start checking for leaks... ⚙️")
+
+                /// Running this script always throw error (somehow the leak tool throw error here) => So we need to process the memgraph in the `catch` block.
+                try shellOut(to: "leaks", arguments: ["\(memgraphPath) -q"])
+            } catch {
+                let error = error as! ShellOutError
+                if error.output.isEmpty {
+                    log(message: "❌ Leaks command run failed! Please open an issue on Github for me to check!", color: .red)
+                    throw LeaksCheckError.leaksCommandFailed
+                }
+
+                let inputs = error.output.components(separatedBy: "\n")
+                guard let numberOfLeaksMessage = inputs.first(where: { $0.matches(regex) }) else {
+                    log(message: "❌ Generated leaks output is incorrect! Please open an issue on Github for me to check!", color: .red)
+                    throw LeaksCheckError.incorectOutputFormat
+                }
+
+                let numberOfLeaks = getNumberOfLeaks(from: numberOfLeaksMessage)
+
+                if numberOfLeaks < 1 {
+                    log(message: "Scan successfully. Don't find any leaks in the program! ✅", color: .green)
+                    return
+                }
+
+                for message in inputs {
+                    let updatedMessage = "\"\(message)\""
+                    try shellOut(to: "echo \(updatedMessage) >> \(Constants.leaksReportFileName)")
+                }
+
+                log(message: "Founded leaks. Generating reports... ⚙️")
+            }
+        }
+    }
+    
+    private func getMemgraphsURLs() -> [URL] {
+        let fileManager = FileManager.default
+        var memgraphFiles: [URL] = []
+        
+        do {
+            // Get the URLs of all items in the folder
+            let files = try fileManager.contentsOfDirectory(at: Constants.memgraphsFolder, includingPropertiesForKeys: nil, options: [])
+            
+            // Filter the files that end with ".memgraph"
+            memgraphFiles = files.filter { $0.pathExtension == "memgraph" }
+        } catch {
+            print("Failed to read contents of directory: \(error.localizedDescription)")
+        }
+        
+        return memgraphFiles
     }
 
     private func getNumberOfLeaks(from message: String) -> Int {

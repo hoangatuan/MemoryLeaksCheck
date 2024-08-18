@@ -11,6 +11,7 @@ struct LeaksDetector: ParsableCommand {
         abstract: "This program wraps up the logic integrate leaks checking with your CI workflow",
         subcommands: [
             MaestroCommand.self,
+            XCUITestCommand.self
         ],
         defaultSubcommand: MaestroCommand.self
     )
