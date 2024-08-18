@@ -41,11 +41,12 @@ Check out [this document](./Docs/Report.md) for how to customize the process to 
 
 - [Maestro](https://maestro.mobile.dev/) ✅
 - [XCUITest](https://developer.apple.com/documentation/xctest) ✅ (Only support real device. Read more [here](./Docs/XCUITests.md)) 
+- [Appium](http://appium.io/) 🚧 (In progress)
 
 ### Why I used Maestro?
    
 1. I need a testing tool which doesn't kill the program after the testing finished execution. And Maestro support that. Also Maestro is very easy to integrate & use.  
-2. XCUITest can not preserve running program after test execution. Read more at [here](./Docs/XCUITests.md) 
+2. XCUITest can not preserve running program after test execution on Simulator. Read more at [here](./Docs/XCUITests.md). However, Xcode support generate memgraph file for XCUITest when running test on real device => XCUITest is a great match for company uses real device farm for testing.
 
 ## How it works
 
@@ -75,8 +76,8 @@ It's easy to do that, just need to follow these steps:
             // Custom logic to start generating memgraph for a `processName`
         }
         
-        func getMemgraphPath() -> String {
-            // return the path to the generated memgraph
+        func memgraphPaths() -> [String]
+            // return the path to the generated memgraphs
         }
     }
     

@@ -28,6 +28,19 @@ class DefaultExecutor: Executor {
     }
     
     func memgraphPaths() -> [String] {
-        fatalError("Need to override this func")
+        let fileManager = FileManager.default
+        var memgraphFiles: [URL] = []
+        
+        // Create a directory enumerator to recursively go through the folder
+        if let enumerator = fileManager.enumerator(at: Constants.memgraphsFolder, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
+            // Iterate through the files and directories
+            for case let fileURL as URL in enumerator {
+                if fileURL.pathExtension == "memgraph" {
+                    memgraphFiles.append(fileURL)
+                }
+            }
+        }
+        
+        return memgraphFiles.map { $0.path() }
     }
 }
