@@ -40,7 +40,7 @@ Check out [this document](./Docs/Report.md) for how to customize the process to 
 ## Current supported testing frameworks
 
 - [Maestro](https://maestro.mobile.dev/) ✅
-- [XCUITest](https://developer.apple.com/documentation/xctest) (XCUITest is not supported. Read more [here](./Docs/XCUITests.md)) ❌
+- [XCUITest](https://developer.apple.com/documentation/xctest) ✅ (Only support real device. Read more [here](./Docs/XCUITests.md)) 
 
 ### Why I used Maestro?
    
